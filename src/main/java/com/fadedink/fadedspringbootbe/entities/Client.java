@@ -1,4 +1,4 @@
-package com.fadedink.fadedspringbootbe.mysql;
+package com.fadedink.fadedspringbootbe.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -6,16 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Clients {
+public class Client {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    public Integer id;
 
-    private String name;
+    public String name;
 
-    private String surname;
+    public String surname;
 
-    private String contactNumber;
+    public String contactNumber;
 
     public int getId() {
         return id;

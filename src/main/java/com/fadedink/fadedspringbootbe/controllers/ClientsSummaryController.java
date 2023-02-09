@@ -1,4 +1,5 @@
-package com.fadedink.fadedspringbootbe;
+package com.fadedink.fadedspringbootbe.controllers;
+import com.fadedink.fadedspringbootbe.ShortClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
