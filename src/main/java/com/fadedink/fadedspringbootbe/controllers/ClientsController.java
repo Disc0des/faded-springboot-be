@@ -20,7 +20,8 @@ public class ClientsController {
     public @ResponseBody String addClients(
             @RequestParam String name,
             @RequestParam String surname,
-            @RequestParam String contactNumber){
+            @RequestParam String contactNumber)
+    {
         Client newClient = new Client();
         newClient.setName(name);
         newClient.setSurname(surname);
@@ -30,7 +31,8 @@ public class ClientsController {
     }
 
     @DeleteMapping("/clients")
-    public @ResponseBody String removeClient(@RequestParam int id){
+    public @ResponseBody String removeClient(@RequestParam int id)
+    {
         clientRepository.deleteById(id);
         return "Client removed successfully";
     }
@@ -41,7 +43,7 @@ public class ClientsController {
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam String contactNumber) {
-        Client updateClient = clientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));;
+        Client updateClient = clientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Client not exist with id: " + id));;
         updateClient.setName(name);
         updateClient.setSurname(surname);
         updateClient.setContactNumber(contactNumber);

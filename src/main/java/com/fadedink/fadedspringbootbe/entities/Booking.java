@@ -18,7 +18,7 @@ public class Booking {
     public String attended;
     public String isGroupon;
     public Integer price;
-    public Integer time;
+    public Integer duration;
 
     public int getId() {
         return id;
@@ -76,11 +76,11 @@ public class Booking {
         this.price = price;
     }
 
-    public int getTime() {
-        return time;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
