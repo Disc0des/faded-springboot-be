@@ -6,44 +6,47 @@ import com.fadedink.fadedspringbootbe.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ClientsController {
+    // TODO: clients summary class.. and get by ID
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @GetMapping("/clients/{id}")
+    public @ResponseBody Optional<Client> client(@PathVariable int id){
+        return clientRepository.findById(id);
+    }
+
     @GetMapping("/clients")
     public @ResponseBody Iterable<Client> getAllClients() {
         return clientRepository.findAll();
     }
 
     @PostMapping("/clients")
-    public @ResponseBody String addClients(
-            // response body accepts the whole object
-            @RequestBody Client client
-    )
+    public @ResponseBody String addClients(@RequestBody Client client)
     {
         clientRepository.save(client);
         return "Client created successfully";
     }
 
     @DeleteMapping("/clients")
-    public @ResponseBody String removeClient(@RequestParam int id)
+    public @ResponseBody String removeClient(@RequestBody Client client)
     {
-        clientRepository.deleteById(id);
+        clientRepository.deleteById(client.id);
         return "Client removed successfully";
     }
 
     @PutMapping("/clients")
-    public @ResponseBody String updateClient(
-            @RequestParam int id,
-            @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam String contactNumber) {
-        Client updateClient = clientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Client not exist with id: " + id));;
-        updateClient.setName(name);
-        updateClient.setSurname(surname);
-        updateClient.setContactNumber(contactNumber);
+    public @ResponseBody String updateClient(@RequestBody Client client)
+    {
+        Client updateClient = clientRepository.findById(client.id).orElseThrow(() -> new ResourceNotFoundException("Client not exist with id: " + client.id));;
+        updateClient.setName(client.name);
+        updateClient.setSurname(client.surname);
+        updateClient.setContactNumber(client.contactNumber);
         clientRepository.save(updateClient);
         return "Client details updated";
     }
