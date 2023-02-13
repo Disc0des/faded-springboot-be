@@ -7,8 +7,10 @@ import com.fadedink.fadedspringbootbe.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class BookingController {
     @Autowired
@@ -21,7 +23,7 @@ public class BookingController {
     @PostMapping("/bookings")
     public @ResponseBody String addBooking(
             @RequestParam int custId,
-            @RequestParam Date date,
+            @RequestParam LocalDate date,
             @RequestParam String confirmed,
             @RequestParam String attended,
             @RequestParam String isGroupon,
@@ -44,14 +46,14 @@ public class BookingController {
     public @ResponseBody String removeBooking(@RequestParam int id)
     {
         bookingRepository.deleteById(id);
-        return "Client removed successfully";
+        return "Booking removed successfully";
     }
 
     @PutMapping("/bookings")
     public @ResponseBody String updateBooking(
             @RequestParam int id,
             @RequestParam int custId,
-            @RequestParam Date date,
+            @RequestParam LocalDate date,
             @RequestParam String confirmed,
             @RequestParam String attended,
             @RequestParam String isGroupon,

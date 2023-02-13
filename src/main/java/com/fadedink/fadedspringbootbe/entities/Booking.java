@@ -1,23 +1,28 @@
 package com.fadedink.fadedspringbootbe.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Booking {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Integer id;
+    @Column(nullable=false)
     public Integer custId;
-    public Date date;
+    @Column(nullable=false)
+    public LocalDate date;
+    @Column(nullable=false)
     public String confirmed;
+    @Column(nullable=false)
     public String attended;
+    @Column(nullable=false)
     public String isGroupon;
+    @Column(nullable=false)
     public Integer price;
+    @Column(nullable=false)
     public Integer duration;
 
     public int getId() {
@@ -36,11 +41,11 @@ public class Booking {
         this.custId = custId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -6,6 +6,7 @@ import com.fadedink.fadedspringbootbe.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ClientsController {
 
@@ -18,15 +19,11 @@ public class ClientsController {
 
     @PostMapping("/clients")
     public @ResponseBody String addClients(
-            @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam String contactNumber)
+            // response body accepts the whole object
+            @RequestBody Client client
+    )
     {
-        Client newClient = new Client();
-        newClient.setName(name);
-        newClient.setSurname(surname);
-        newClient.setContactNumber(contactNumber);
-        clientRepository.save(newClient);
+        clientRepository.save(client);
         return "Client created successfully";
     }
 
