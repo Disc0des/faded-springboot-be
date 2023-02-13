@@ -2,6 +2,10 @@ package com.fadedink.fadedspringbootbe.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
 @Entity // This tells Hibernate to make a table out of this class
 public class Client {
     @Id
@@ -13,6 +17,14 @@ public class Client {
     public String surname;
     @Column(nullable=false)
     public String contactNumber;
+    @Column(nullable=false)
+    public String tattooDescription;
+    @Column(nullable=false)
+    public int bookingsAttended;
+
+    @OneToMany(mappedBy="custId")
+    public Set<Booking> bookingsHistory;
+
 
     public int getId() {
         return id;

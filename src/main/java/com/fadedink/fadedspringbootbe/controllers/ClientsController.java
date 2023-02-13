@@ -11,8 +11,6 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ClientsController {
-    // TODO: clients summary class.. and get by ID
-
     @Autowired
     private ClientRepository clientRepository;
 
@@ -21,6 +19,7 @@ public class ClientsController {
         return clientRepository.findById(id);
     }
 
+    // TODO: this currently returns all fields for every client, we only need id, name, surname
     @GetMapping("/clients")
     public @ResponseBody Iterable<Client> getAllClients() {
         return clientRepository.findAll();

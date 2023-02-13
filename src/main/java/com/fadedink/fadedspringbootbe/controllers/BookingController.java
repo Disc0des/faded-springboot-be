@@ -15,6 +15,8 @@ import java.util.Date;
 public class BookingController {
     @Autowired
     private BookingRepository bookingRepository;
+
+    // TODO: need endpoints where we get bookings for specific day/week
     @GetMapping("/bookings")
     public @ResponseBody Iterable<Booking> getAllBookings() {
         return bookingRepository.findAll();
@@ -22,51 +24,30 @@ public class BookingController {
 
     @PostMapping("/bookings")
     public @ResponseBody String addBooking(
-            @RequestParam int custId,
-            @RequestParam LocalDate date,
-            @RequestParam String confirmed,
-            @RequestParam String attended,
-            @RequestParam String isGroupon,
-            @RequestParam int price,
-            @RequestParam int duration)
+            @RequestBody Booking newBooking)
     {
-        Booking newBooking = new Booking();
-        newBooking.setCustId(custId);
-        newBooking.setDate(date);
-        newBooking.setConfirmed(confirmed);
-        newBooking.setAttended(attended);
-        newBooking.setIsGroupon(isGroupon);
-        newBooking.setPrice(price);
-        newBooking.setDuration(duration);
         bookingRepository.save(newBooking);
         return "Booking created successfully";
     }
 
     @DeleteMapping("/bookings")
-    public @ResponseBody String removeBooking(@RequestParam int id)
+    public @ResponseBody String removeBooking(@RequestBody Booking booking)
     {
-        bookingRepository.deleteById(id);
+        bookingRepository.deleteById(booking.id);
         return "Booking removed successfully";
     }
 
     @PutMapping("/bookings")
     public @ResponseBody String updateBooking(
-            @RequestParam int id,
-            @RequestParam int custId,
-            @RequestParam LocalDate date,
-            @RequestParam String confirmed,
-            @RequestParam String attended,
-            @RequestParam String isGroupon,
-            @RequestParam int price,
-            @RequestParam int duration) {
-        Booking updateBooking = bookingRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Booking not exist with id: " + id));;
-        updateBooking.setCustId(custId);
-        updateBooking.setDate(date);
-        updateBooking.setConfirmed(confirmed);
-        updateBooking.setAttended(attended);
-        updateBooking.setIsGroupon(isGroupon);
-        updateBooking.setPrice(price);
-        updateBooking.setDuration(duration);
+            @RequestBody Booking booking) {
+        Booking updateBooking = bookingRepository.findById(booking.id).orElseThrow(() -> new ResourceNotFoundException("Booking not exist with id: " + booking.id));;
+        updateBooking.setCustId(booking.custId);
+        updateBooking.setDate(booking.date);
+        updateBooking.setConfirmed(booking.confirmed);
+        updateBooking.setAttended(booking.attended);
+        updateBooking.setIsGroupon(booking.isGroupon);
+        updateBooking.setPrice(booking.price);
+        updateBooking.setDuration(booking.duration);
         bookingRepository.save(updateBooking);
         return "Booking details updated";
     }
