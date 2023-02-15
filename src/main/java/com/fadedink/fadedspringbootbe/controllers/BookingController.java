@@ -30,6 +30,7 @@ public class BookingController {
         return "Booking created successfully";
     }
 
+    // TODO: soft deletes
     @DeleteMapping("/bookings")
     public @ResponseBody String removeBooking(@RequestBody Booking booking)
     {

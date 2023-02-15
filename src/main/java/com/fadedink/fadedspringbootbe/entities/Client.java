@@ -21,9 +21,15 @@ public class Client {
     public String tattooDescription;
     @Column(nullable=false)
     public int bookingsAttended;
-
     @OneToMany(mappedBy="custId")
     public Set<Booking> bookingsHistory;
+    @Column(nullable=false)
+    public boolean isGroupon;
+    @Column(nullable=false)
+    public boolean grouponBookings;
+    @Column(nullable=false)
+    public String notes;
+
 
 
     public int getId() {

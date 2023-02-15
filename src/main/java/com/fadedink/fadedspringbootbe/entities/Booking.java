@@ -17,11 +17,11 @@ public class Booking {
     @Column(nullable=false)
     public LocalDateTime date;
     @Column(nullable=false)
-    public String confirmed;
+    public boolean confirmed;
     @Column(nullable=false)
-    public String attended;
+    public boolean attended;
     @Column(nullable=false)
-    public String isGroupon;
+    public boolean isGroupon;
     @Column(nullable=false)
     public Integer price;
     @Column(nullable=false)
@@ -51,27 +51,27 @@ public class Booking {
         this.date = date;
     }
 
-    public String getConfirmed() {
+    public boolean getConfirmed() {
         return confirmed;
     }
 
-    public void setConfirmed(String confirmed) {
+    public void setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
     }
 
-    public String getAttended() {
+    public boolean getAttended() {
         return attended;
     }
 
-    public void setAttended(String attended) {
+    public void setAttended(boolean attended) {
         this.attended = attended;
     }
 
-    public String getIsGroupon() {
+    public boolean getIsGroupon() {
         return isGroupon;
     }
 
-    public void setIsGroupon(String isGroupon) {
+    public void setIsGroupon(boolean isGroupon) {
         this.isGroupon = isGroupon;
     }
 
