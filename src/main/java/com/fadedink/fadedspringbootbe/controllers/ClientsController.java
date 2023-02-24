@@ -1,11 +1,14 @@
 package com.fadedink.fadedspringbootbe.controllers;
 
+import com.fadedink.fadedspringbootbe.entities.ShortClient;
 import com.fadedink.fadedspringbootbe.entities.Client;
 import com.fadedink.fadedspringbootbe.exceptions.ResourceNotFoundException;
+import com.fadedink.fadedspringbootbe.repositories.AllClientNames;
 import com.fadedink.fadedspringbootbe.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -21,8 +24,9 @@ public class ClientsController {
 
     // TODO: this currently returns all fields for every client, we only need id, name, surname
     @GetMapping("/clients")
-    public @ResponseBody Iterable<Client> getAllClients() {
-        return clientRepository.findAll();
+    public @ResponseBody List<AllClientNames> getAllClients() {
+        List<AllClientNames> clients = clientRepository.getAllClients();
+        return clients;
     }
 
     @PostMapping("/clients")

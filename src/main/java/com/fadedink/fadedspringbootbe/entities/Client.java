@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity // Tells Hibernate to make a table out of this class
 public class Client {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -64,3 +64,4 @@ public class Client {
         this.contactNumber = contactNumber;
     }
 }
+
