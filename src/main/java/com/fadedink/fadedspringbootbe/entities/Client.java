@@ -26,7 +26,7 @@ public class Client {
     @Column(nullable=false)
     public boolean isGroupon;
     @Column(nullable=false)
-    public boolean grouponBookings;
+    public Integer grouponBookings;
     @Column(nullable=false)
     public String notes;
 

@@ -1,6 +1,5 @@
 package com.fadedink.fadedspringbootbe.repositories;
 import com.fadedink.fadedspringbootbe.entities.Client;
-import com.fadedink.fadedspringbootbe.entities.ShortClient;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,5 @@
 package com.fadedink.fadedspringbootbe.controllers;
 
-import com.fadedink.fadedspringbootbe.entities.ShortClient;
 import com.fadedink.fadedspringbootbe.entities.Client;
 import com.fadedink.fadedspringbootbe.exceptions.ResourceNotFoundException;
 import com.fadedink.fadedspringbootbe.repositories.AllClientNames;
