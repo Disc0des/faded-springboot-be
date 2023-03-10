@@ -21,6 +21,8 @@ public class Client {
     public String tattooDescription;
     @Column(nullable=false)
     public int bookingsAttended;
+    @Column
+    public Integer nextBooking;
     @OneToMany(mappedBy="custId")
     public Set<Booking> bookingsHistory;
     @Column(nullable=false)

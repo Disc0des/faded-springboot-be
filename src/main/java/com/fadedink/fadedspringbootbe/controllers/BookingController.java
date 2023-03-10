@@ -1,14 +1,12 @@
 package com.fadedink.fadedspringbootbe.controllers;
 
 import com.fadedink.fadedspringbootbe.entities.Booking;
-import com.fadedink.fadedspringbootbe.entities.Client;
 import com.fadedink.fadedspringbootbe.exceptions.ResourceNotFoundException;
 import com.fadedink.fadedspringbootbe.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -17,9 +15,16 @@ public class BookingController {
     private BookingRepository bookingRepository;
 
     // TODO: need endpoints where we get bookings for specific day/week
-    @GetMapping("/bookings")
-    public @ResponseBody Iterable<Booking> getAllBookings() {
-        return bookingRepository.findAll();
+    @GetMapping("/bookings-history/{id}")
+    public @ResponseBody List<Booking> getBookingHistory(@PathVariable int id) {
+        List<Booking> bookingsHistory = bookingRepository.getBookingHistory(id);
+        return bookingsHistory;
+    }
+
+    @GetMapping("/next-booking/{id}")
+    public @ResponseBody Booking getNextBooking(@PathVariable int id) {
+       Booking nextBooking = bookingRepository.getNextBooking(id);
+       return nextBooking;
     }
 
     @PostMapping("/bookings")

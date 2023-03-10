@@ -12,4 +12,3 @@ public interface ClientRepository extends CrudRepository<Client, Integer> {
     List<AllClientNames> getAllClients();
 }
 
-
