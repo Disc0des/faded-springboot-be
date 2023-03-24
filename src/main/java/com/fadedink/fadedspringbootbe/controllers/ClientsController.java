@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ClientsController {
     @Autowired
     private ClientRepository clientRepository;
@@ -21,7 +21,6 @@ public class ClientsController {
         return clientRepository.findById(id);
     }
 
-    // TODO: this currently returns all fields for every client, we only need id, name, surname
     @GetMapping("/clients")
     public @ResponseBody List<AllClientNames> getAllClients() {
         List<AllClientNames> clients = clientRepository.getAllClients();
@@ -41,7 +40,6 @@ public class ClientsController {
         clientRepository.deleteById(client.id);
         return "Client removed successfully";
     }
-
     @PutMapping("/clients")
     public @ResponseBody String updateClient(@RequestBody Client client)
     {
@@ -49,6 +47,8 @@ public class ClientsController {
         updateClient.setName(client.name);
         updateClient.setSurname(client.surname);
         updateClient.setContactNumber(client.contactNumber);
+        updateClient.setTattooDescription(client.tattooDescription);
+        updateClient.setNotes(client.notes);
         clientRepository.save(updateClient);
         return "Client details updated";
     }
