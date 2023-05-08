@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookingController {
     @Autowired
     private BookingRepository bookingRepository;
@@ -25,6 +25,12 @@ public class BookingController {
     public @ResponseBody Booking getNextBooking(@PathVariable int id) {
        Booking nextBooking = bookingRepository.getNextBooking(id);
        return nextBooking;
+    }
+
+    @GetMapping("/bookings")
+    public @ResponseBody Iterable<Booking> getBookings() {
+        Iterable<Booking> bookings = bookingRepository.findAll();
+        return bookings;
     }
 
     @PostMapping("/bookings")

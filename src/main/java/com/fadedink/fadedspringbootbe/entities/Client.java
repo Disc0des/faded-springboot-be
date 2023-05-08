@@ -3,9 +3,6 @@ package com.fadedink.fadedspringbootbe.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity // Tells Hibernate to make a table out of this class
@@ -23,8 +20,7 @@ public class Client {
     public String tattooDescription;
     @Column(nullable=false)
     public int bookingsAttended;
-    @Column
-    public LocalDateTime nextBooking;
+
     @OneToMany(mappedBy="custId")
     public Set<Booking> bookingsHistory;
     @Column(nullable=false)
@@ -69,12 +65,6 @@ public class Client {
     }
     public void setBookingsAttended(int bookingsAttended) {
         this.bookingsAttended = bookingsAttended;
-    }
-    public LocalDateTime getNextBooking() {
-        return nextBooking;
-    }
-    public void setNextBooking(LocalDateTime nextBooking) {
-        this.nextBooking = nextBooking;
     }
     public boolean getIsGroupon() {
         return isGroupon;

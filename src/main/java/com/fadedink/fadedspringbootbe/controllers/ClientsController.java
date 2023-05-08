@@ -34,10 +34,10 @@ public class ClientsController {
         return "Client created successfully";
     }
 
-    @DeleteMapping("/clients")
-    public @ResponseBody String removeClient(@RequestBody Client client)
+    @DeleteMapping("/clients/{id}")
+    public @ResponseBody String removeClient(@PathVariable int id)
     {
-        clientRepository.deleteById(client.id);
+        clientRepository.deleteById(id);
         return "Client removed successfully";
     }
     @PutMapping("/clients")
