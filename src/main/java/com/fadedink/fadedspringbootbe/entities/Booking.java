@@ -1,10 +1,7 @@
 package com.fadedink.fadedspringbootbe.entities;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Booking {
@@ -26,6 +23,10 @@ public class Booking {
     public Integer price;
     @Column(nullable=false)
     public Integer duration;
+    @Column(nullable = false)
+    public String bookingName;
+    @Column(nullable = false)
+    public String bookingSurname;
 
     public int getId() {
         return id;
@@ -89,5 +90,17 @@ public class Booking {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public String getBookingName() { return bookingName; }
+
+    public void setBookingName(String bookingName) {
+        this.bookingName = bookingName;
+    }
+
+    public String getBookingSurname() { return bookingSurname; }
+
+    public void setBookingSurname(String bookingSurname) {
+        this.bookingSurname = bookingSurname;
     }
 }

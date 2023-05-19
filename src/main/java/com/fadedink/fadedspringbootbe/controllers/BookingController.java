@@ -60,6 +60,8 @@ public class BookingController {
         updateBooking.setIsGroupon(booking.isGroupon);
         updateBooking.setPrice(booking.price);
         updateBooking.setDuration(booking.duration);
+        updateBooking.setBookingName(booking.bookingName);
+        updateBooking.setBookingSurname(booking.bookingSurname);
         bookingRepository.save(updateBooking);
         return "Booking details updated";
     }
