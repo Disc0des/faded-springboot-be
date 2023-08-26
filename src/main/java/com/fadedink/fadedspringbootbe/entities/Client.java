@@ -2,7 +2,9 @@ package com.fadedink.fadedspringbootbe.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Entity // Tells Hibernate to make a table out of this class
@@ -27,6 +29,8 @@ public class Client {
     public boolean isGroupon;
     @Column(nullable=false)
     public Integer grouponBookings;
+    @Column(nullable = false)
+    public LocalDate lastContacted;
     @Column(nullable=false)
     public String notes;
 
@@ -77,6 +81,12 @@ public class Client {
     }
     public void setGrouponBookings(int grouponBookings) {
         this.grouponBookings = grouponBookings;
+    }
+    public LocalDate getLastContacted() {
+        return lastContacted;
+    }
+    public void setLastContacted(LocalDate lastContacted) {
+        this.lastContacted = lastContacted;
     }
     public String getNotes() {
         return notes;

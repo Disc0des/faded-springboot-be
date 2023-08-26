@@ -14,7 +14,6 @@ public class BookingController {
     @Autowired
     private BookingRepository bookingRepository;
 
-    // TODO: need endpoints where we get bookings for specific day/week
     @GetMapping("/bookings-history/{id}")
     public @ResponseBody List<Booking> getBookingHistory(@PathVariable int id) {
         List<Booking> bookingsHistory = bookingRepository.getBookingHistory(id);
@@ -41,14 +40,14 @@ public class BookingController {
         return "Booking created successfully";
     }
 
-    // TODO: soft deletes
-    @DeleteMapping("/bookings")
-    public @ResponseBody String removeBooking(@RequestBody Booking booking)
+    @DeleteMapping("/bookings/{id}")
+    public @ResponseBody String removeBooking(@PathVariable int id)
     {
-        bookingRepository.deleteById(booking.id);
+        bookingRepository.deleteById(id);
         return "Booking removed successfully";
     }
 
+    // MAP
     @PutMapping("/bookings")
     public @ResponseBody String updateBooking(
             @RequestBody Booking booking) {

@@ -10,5 +10,8 @@ import java.util.List;
 public interface ClientRepository extends CrudRepository<Client, Integer> {
     @Query(value = "SELECT id, name, surname FROM client", nativeQuery = true)
     List<AllClientNames> getAllClients();
+
+    @Query(value = "SELECT * FROM client WHERE last_contacted < DATE(DATE_ADD(DATE(SYSDATE()), INTERVAL -?1 MONTH))", nativeQuery = true)
+    List<Client> getClientsToFollowUp(int months);
 }
 

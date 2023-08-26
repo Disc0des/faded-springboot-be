@@ -7,6 +7,7 @@ import com.fadedink.fadedspringbootbe.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,7 @@ public class ClientsController {
     @PostMapping("/clients")
     public @ResponseBody String addClients(@RequestBody Client client)
     {
+        client.setLastContacted(LocalDate.now());
         clientRepository.save(client);
         return "Client created successfully";
     }
@@ -49,6 +51,10 @@ public class ClientsController {
         updateClient.setContactNumber(client.contactNumber);
         updateClient.setTattooDescription(client.tattooDescription);
         updateClient.setNotes(client.notes);
+        updateClient.setIsGroupon(client.isGroupon);
+        updateClient.setGrouponBookings(client.grouponBookings);
+        updateClient.setBookingsAttended(client.bookingsAttended);
+        updateClient.setLastContacted(client.lastContacted);
         clientRepository.save(updateClient);
         return "Client details updated";
     }
